@@ -13,8 +13,11 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
       
-    - name: Install Dependencies
-      run: npm install
+    - name: Clean npm cache and install dependencies
+      run: |
+        rm -rf node_modules package-lock.json
+        npm cache clean --force
+        npm install
 
     - name: Build Angular App
       run: npm run build
